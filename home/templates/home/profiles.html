@@ -1,0 +1,41 @@
+{% extends "home/base.html" %}
+{% block start %}
+    <header>
+        <h1>Profiles Page</h1>
+        <a href="/about-page">
+            about
+        </a>
+        ||
+        <a href="/">
+            home-page
+        </a>
+    </header>
+
+    <p> This is profiles page!!</p>
+
+    {% for profile in profiles %}
+    <section>
+        <h2>Profile Information - {{forloop.counter}} </h2>
+        <p><strong>Name:</strong> {{ profile.name|truncatechars:5 }} </p>
+        <p><strong>Age:</strong> {{profile.age}} </p>
+        <p><strong>Occupation:</strong> ML Engineer </p>
+        <p><strong>Location:</strong> Bangalore, India</p>
+        <p><strong>About Me:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ac quam eu dui tristique ullamcorper. Proin eu nisi nec eros vehicula iaculis. Sed vel velit nec lacus commodo laoreet.</p>
+        <p><strong>Eligible:</strong>
+            {% if profile.age >= 18 %}
+            👍
+            {% else %}
+            👎
+            {% endif %}
+        </p>
+        {% if profile.name == "Karan" %}
+        <strong>CEO!!</strong>
+        {%  elif profile.name == "Arjun" %}
+        <strong>Founder!!</strong>
+        {% else %}
+        <strong>Senior Employee!!</strong>
+        {% endif %}
+    </section>
+    {% endfor %}
+
+    {% endblock %}
